@@ -15,30 +15,8 @@ Element providing solution to no problem in particular.
 
     <script src="../i18next/i18next.js"></script>
     <script >
-            i18n.init({ lng: "it-IT", fallbackLng: 'en', debug: true, resGetPath: '../fd-polymer-i18next-translate/__ns__/__lng__.json'}, function(){
+            i18n.init({ debug: true, resGetPath: '../fd-polymer-i18next-translate/__ns__/__lng__.json'}, function(){
 
-          if(!localStorage["locale"]){
-          var defaultLanguage = navigator.language;
-          if(!defaultLanguage){
-            defaultLanguage = navigator.browserLanguage;
-          }
-          switch(defaultLanguage){
-            case undefined : 
-            case "en-us":
-            case "en":{
-              localStorage["locale"] = JSON.stringify("en-US");
-              break;
-            }
-            case "it-it":
-            case "it":{
-              localStorage["locale"] = JSON.stringify("it-IT");
-              break;
-            }
-            default: {
-              localStorage["locale"] = JSON.stringify(defaultLanguage);
-            }
-          }
-        }
 
         PolymerExpressions.prototype.translate = function(key, extra){
           if(key){
