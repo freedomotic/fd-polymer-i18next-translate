@@ -15,6 +15,7 @@
   "devDependencies": {
     "polymer-test-tools": "Polymer/polymer-test-tools#^0.4.0"
   },
+  "homepage": "https://github.com/freedomotic/fd-polymer-i18next-translate",
   "authors": [
     "Matteo Mazzoni <matteo@freedomotic.com>",
     "Niko Zarzani <niko.zarzani@nautes.com>"
