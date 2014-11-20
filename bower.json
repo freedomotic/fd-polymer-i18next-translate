@@ -1,0 +1,7 @@
+{
+  "name": "fd-polymer-i18next-translate#gh-pages",
+  "private": true,
+  "dependencies": {
+    "fd-polymer-i18next-translate": "freedomotic/fd-polymer-i18next-translate#master"
+  }
+}
