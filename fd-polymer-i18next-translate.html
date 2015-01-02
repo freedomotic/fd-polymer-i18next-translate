@@ -15,7 +15,39 @@ Element providing solution to no problem in particular.
 
     <script src="../i18next/i18next.js"></script>
     <script >
-            i18n.init({ debug: true, resGetPath: '../fd-polymer-i18next-translate/__ns__/__lng__.json'}, function(){
+    // Get script file location
+// doesn't work for older browsers
+ 
+var getScriptLocation = function() {
+var fileName = "fileName";
+var stack = "stack";
+var stackTrace = "stacktrace";
+var loc = null;
+ 
+var matcher = function(stack, matchedLoc) { return loc = matchedLoc; };
+ 
+try {
+ 
+// Invalid code
+0();
+ 
+} catch (ex) {
+ 
+if(fileName in ex) { // Firefox
+loc = ex[fileName];
+} else if(stackTrace in ex) { // Opera
+ex[stackTrace].replace(/called from line \d+, column \d+ in (.*):/gm, matcher);
+} else if(stack in ex) { // WebKit, Blink and IE10
+ex[stack].replace(/at.*?\(?(\S+):\d+:\d+\)?$/g, matcher);
+}
+ 
+return loc;
+}
+ 
+}; 
+            var lngLoc= getScriptLocation().replace("fd-polymer-i18next-translate.html", "__ns__/__lng__.json");
+            console.log(lngLoc);
+            i18n.init({ debug: true, getAsync: false, resGetPath: lngLoc}, function(){
 
 
         PolymerExpressions.prototype.translate = function(key, extra){
