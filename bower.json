@@ -9,8 +9,8 @@
   ],
   "main": "fd-polymer-i18next-translate.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.5.2",
-    "i18next": "~1.7.7"
+    "polymer": "Polymer/polymer#^0.5.4",
+    "i18next": "~1.7.4"
   },
   "devDependencies": {
     "polymer-test-tools": "Polymer/polymer-test-tools#^0.5.2"

@@ -13,66 +13,55 @@ Element providing solution to no problem in particular.
 @homepage http://polymerlabs.github.io/fd-polymer-i18next-translate
 -->
 
-    <script src="../i18next/i18next.js"></script>
-    <script >
-    // Get script file location
-// doesn't work for older browsers
- 
-var getScriptLocation = function() {
-var fileName = "fileName";
-var stack = "stack";
-var stackTrace = "stacktrace";
-var loc = null;
- 
-var matcher = function(stack, matchedLoc) { return loc = matchedLoc; };
- 
-try {
- 
-// Invalid code
-0();
- 
-} catch (ex) {
- 
-if(fileName in ex) { // Firefox
-loc = ex[fileName];
-} else if(stackTrace in ex) { // Opera
-ex[stackTrace].replace(/called from line \d+, column \d+ in (.*):/gm, matcher);
-} else if(stack in ex) { // WebKit, Blink and IE10
-ex[stack].replace(/at.*?\(?(\S+):\d+:\d+\)?$/g, matcher);
-}
- 
-return loc;
-}
- 
-}; 
-            var lngLoc= getScriptLocation().replace("fd-polymer-i18next-translate.html", "__ns__/__lng__.json");
-            console.log(lngLoc);
-            i18n.init({ debug: true, getAsync: false, resGetPath: lngLoc}, function(){
+<script src="../i18next/i18next.js"></script>
+<script>
 
+  function postInit() {
 
-        PolymerExpressions.prototype.translate = function(key, extra){
-          if(key){
-            var lower_key = key.toLowerCase();
-            //console.log(i18n.t("app.name") + ": " + key);
-            var translation;
-            if (!!extra){
-              translation = i18n.t(key, {"var": extra});
-            } else {
-              translation = i18n.t(lower_key);
-            }
-            if (!!translation) {
-              return translation;
-            } else {
-              return " _|" + lower_key + "|_ ";
-            }
-          } else {
-            return "[O_O]";
-          }
-        };
+    PolymerExpressions.prototype.translate = function(key, extra) {
+      if (key) {
+        var lower_key = key.toLowerCase();
+        //console.log(i18n.t("app.name") + ": " + key);
+        var translation;
+        if (!!extra) {
+          translation = i18n.t(key, {
+            "var": extra
+          });
+        }
+        else {
+          translation = i18n.t(lower_key);
+        }
+        if (!!translation) {
+          return translation;
+        }
+        else {
+          return " _|" + lower_key + "|_ ";
+        }
+      }
+      else {
+        return "[O_O]";
+      }
+    };
 
-      PolymerExpressions.prototype.upperCase = function(text){
-         return text.toUpperCase();
-       };
-    });
-      </script>
+    PolymerExpressions.prototype.upperCase = function(text) {
+      return text.toUpperCase();
+    };
+  };
 
+  i18n.init({
+      // debug: true,
+      fallbackLng: false,
+      getAsync: false,
+      resGetPath: './__ns__/__lng__.json'
+    },
+    postInit
+  );
+  i18n.init({
+      // debug: true,
+      fallbackLng: false,
+      getAsync: false,
+      resGetPath: './bower_components/fd-polymer-i18next-translate/__ns__/__lng__.json'
+    },
+    postInit
+  );
+</script>
